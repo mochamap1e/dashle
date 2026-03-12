@@ -9,33 +9,13 @@ export default function App() {
     // -------- FETCH DEMONLIST -------- //
 
     const [list, setList] = useState<Level[]>([]);
-
-    const placeholderLevel: Level = {
-        id: 0,
-        level_id: 0,
-        name: "Level Name",
-        position: 0,
-        publisher: {
-            id: 0,
-            name: "Publisher",
-            banned: false
-        },
-        requirement: 0,
-        thumbnail: "/img/placeholder.jpg",
-        verifier: {
-            id: 0,
-            name: "Verifier",
-            banned: false
-        },
-        video: "https://example.com"
-    }
-
+    
     const cacheKey = "cached_list";
     const refreshTime = 86400000; // 24 hours
 
     async function fetchList() {
         try {
-            const response = await axios.get("https://pointercrate.com/api/v2/demons/listed?limit=100");
+            const response = await axios.get("https://pointercrate.com/api/v2/demons/listed?limit=50");
 
             const listData: ListCache = {
                 date: Date.now(),
@@ -89,7 +69,12 @@ export default function App() {
 
     // -------- PAGE -------- //
 
-    return <>
-        {list.length > 0 && <LevelElement level={list[1]} />}
-    </>;
+    return <div className="page">
+        <h1 className="title">Dashle</h1>
+        <p className="desc">The Pointercrate Demonlist guessing game</p>
+
+        <input className="input" placeholder="Enter a demonlist level..."/>
+
+        {list.length > 0 && <LevelElement level={list[13]} />}
+    </div>;
 }

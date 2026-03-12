@@ -1,24 +1,40 @@
+:root {
+    --level-img-size: 300px;
+}
+
 .level {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* position: absolute; */
     gap: 15px;
-    padding: 25px 50px;
+    padding: 25px;
     border-radius: 10px;
     border: 2px solid white;
+    background-color: black;
     background-size: auto 110%;
     background-position: center;
     background-repeat: no-repeat;
+    margin: 0;
 }
 
 .level-img {
-    width: 300px;
+    width: var(--level-img-size);
     border-radius: 10px;
     aspect-ratio: 16 / 9;
     box-shadow: 0 0 20px black;
 }
 
-.level > h1, p {
-    text-shadow: 0 0 20px black;
-    margin: 0;
+.level-name {
+    max-width: var(--level-img-size);
+}
+
+.level-rank {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    font-weight: bold;
+}
+
+.level > p {
+    text-shadow: 0 0 5px black;
 }
