@@ -1,5 +1,24 @@
 .level {
-    width: 250px;
-    height: 100px;
-    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 25px 50px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-size: auto 110%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.level-img {
+    width: 300px;
+    border-radius: 10px;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 0 20px black;
+}
+
+.level > h1, p {
+    text-shadow: 0 0 20px black;
+    margin: 0;
 }

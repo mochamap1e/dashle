@@ -2,14 +2,33 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 import LevelElement from "./components/LevelElement";
-import GDTest from "./components/GDTest";
 
 import "./styles.css";
 
 export default function App() {
+    // -------- FETCH DEMONLIST -------- //
+
     const [list, setList] = useState<Level[]>([]);
 
-    // -------- FETCH DEMONLIST -------- //
+    const placeholderLevel: Level = {
+        id: 0,
+        level_id: 0,
+        name: "Level Name",
+        position: 0,
+        publisher: {
+            id: 0,
+            name: "Publisher",
+            banned: false
+        },
+        requirement: 0,
+        thumbnail: "/img/placeholder.jpg",
+        verifier: {
+            id: 0,
+            name: "Verifier",
+            banned: false
+        },
+        video: "https://example.com"
+    }
 
     const cacheKey = "cached_list";
     const refreshTime = 86400000; // 24 hours
@@ -54,37 +73,23 @@ export default function App() {
         }
     }, []);
 
-    // -------- IDK -------- //
+    // -------- DEBUGGING -------- //
 
     useEffect(() => {
         console.log(list);
     }, [list]);
 
+    /*
+    
+    {list.map((level, index) => (
+        <LevelElement key={index} level={level}/>
+    ))}
+
+    */
+
+    // -------- PAGE -------- //
+
     return <>
-        <LevelElement level={{
-            id: 1,
-            level_id: 1,
-            name: "test",
-            position: 1,
-            publisher: {
-                id: 1,
-                name: "user",
-                banned: false
-            },
-            requirement: 50,
-            thumbnail: "hi",
-            verifier: {
-                id: 1,
-                name: "User",
-                banned: false
-            },
-            video: ""
-        }}/>
-
-        {list.map((level, index) => (
-            <LevelElement key={index} level={level}/>
-        ))}
-
-        <GDTest/>   
+        {list.length > 0 && <LevelElement level={list[1]} />}
     </>;
 }

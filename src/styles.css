@@ -1,5 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 body {
     display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: rgb(40, 40, 40);
+    color: white;
+    font-family: "Mulish", Arial, Helvetica, sans-serif;
     margin: 0;
 }
