@@ -15,7 +15,7 @@ export default function App() {
 
     async function fetchList() {
         try {
-            const response = await axios.get("https://pointercrate.com/api/v2/demons/listed?limit=50");
+            const response = await axios.get("https://pointercrate.com/api/v2/demons/listed?limit=100");
 
             const listData: ListCache = {
                 date: Date.now(),
@@ -70,11 +70,13 @@ export default function App() {
     // -------- PAGE -------- //
 
     return <div className="page">
+        <img className="icon" src="/img/gd.png" draggable="false"/>
+
         <h1 className="title">Dashle</h1>
-        <p className="desc">The Pointercrate Demonlist guessing game</p>
+        <p className="desc">The Geometry Dash level guessing game</p>
 
-        <input className="input" placeholder="Enter a demonlist level..."/>
+        <input className="input" placeholder="Enter a top 100 demonlist level name..."/>
 
-        {list.length > 0 && <LevelElement level={list[13]} />}
+        {list.length > 100 && <LevelElement level={list[13]}/>}
     </div>;
 }

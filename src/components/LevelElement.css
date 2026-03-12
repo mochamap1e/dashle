@@ -5,7 +5,7 @@
 .level {
     display: flex;
     flex-direction: column;
-    /* position: absolute; */
+    position: absolute;
     gap: 15px;
     padding: 25px;
     border-radius: 10px;
@@ -15,6 +15,7 @@
     background-position: center;
     background-repeat: no-repeat;
     margin: 0;
+    z-index: 10;
 }
 
 .level-img {
