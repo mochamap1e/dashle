@@ -10,7 +10,7 @@ export default function LevelElement({ level }: { level: Level }) {
         Vibrant.from(level.thumbnail).getPalette().then((palette) => {
             setBorderStyle(`3px solid ${palette?.Vibrant?.hex ?? "white"}`);
         });
-    }, []);
+    }, [level.thumbnail]);
     
     return <div className="level"
         style={{
