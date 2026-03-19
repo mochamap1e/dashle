@@ -4,7 +4,7 @@ import { Vibrant } from "node-vibrant/browser";
 
 import "./LevelElement.css";
 
-export default function LevelElement({ level }: { level: Level }) {
+export function LevelElement({ level }: { level: Level }) {
     const levelRef = useRef(null);
 
     const [levelColor, setLevelColor] = useState<string>("");

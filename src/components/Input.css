@@ -1,0 +1,16 @@
+.input {
+    background-color: rgb(40, 40, 40);
+    color: white;
+    width: 400px;
+    height: 40px;
+    font-size: 15px;
+    text-align: center;
+    border: 2px solid rgb(60, 60, 60);
+    border-radius: 10px;
+    outline: none;
+    transition: ease-in-out 0.1s;
+}
+
+.input:focus {
+    border: 2px solid rgb(100, 100, 100);
+}

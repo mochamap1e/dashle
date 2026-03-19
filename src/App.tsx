@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-import LevelElement from "./components/LevelElement";
+import { Input } from "./components/Input";
+import { LevelElement } from "./components/LevelElement";
 
 import "./styles.css";
 
@@ -15,7 +16,7 @@ export default function App() {
 
     async function fetchList() {
         try {
-            const response = await axios.get("https://pointercrate.com/api/v2/demons/listed?limit=100");
+            const response = await axios.get("https://pointercrate.com/api/v2/demons/listed?limit=75");
 
             const listData: ListCache = {
                 date: Date.now(),
@@ -75,8 +76,8 @@ export default function App() {
         <h1 className="title">Dashle</h1>
         <p className="desc">The Geometry Dash level guessing game</p>
 
-        <input className="input" placeholder="Enter a top 100 demonlist level name..."/>
+        <Input list={list}/>
 
-        {list.length > 100 && <LevelElement level={list[13]}/>}
+        {list.length > 75 && <LevelElement level={list[1]}/>}
     </div>;
 }
