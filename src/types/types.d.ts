@@ -1,14 +1,3 @@
-interface ListCache {
-    date: number,
-    list: any[]
-}
-
-interface User {
-    id: number,
-    name: string,
-    banned: boolean
-}
-
 interface Level {
     id: number,
     level_id: number,
@@ -19,4 +8,15 @@ interface Level {
     thumbnail: string,
     verifier: User,
     video: string
+}
+
+interface User {
+    id: number,
+    name: string,
+    banned: boolean
+}
+
+interface ListCache {
+    date: number,
+    list: Level[]
 }

@@ -1,3 +1,7 @@
+:root {
+    --suggestion-border-radius: 10px;
+}
+
 .input {
     background-color: rgb(40, 40, 40);
     color: white;
@@ -13,4 +17,29 @@
 
 .input:focus {
     border: 2px solid rgb(100, 100, 100);
+}
+
+.suggestions {
+    height: 0;
+    padding: 0;
+    margin: 10px;
+}
+
+.suggestion {
+    background-color: rgb(40, 40, 40);
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.suggestion:first-child {
+    border-top-left-radius: var(--suggestion-border-radius);
+    border-top-right-radius: var(--suggestion-border-radius);
+}
+
+.suggestion:last-child {
+    border-bottom-left-radius: var(--suggestion-border-radius);
+    border-bottom-right-radius: var(--suggestion-border-radius);
 }
