@@ -74,7 +74,6 @@ export default function App() {
         <img className="icon" src="/img/gd.png" draggable="false"/>
 
         <h1 className="title">Dashle</h1>
-        <p className="desc">The Geometry Dash level guessing game</p>
 
         <Input list={list}/>
 

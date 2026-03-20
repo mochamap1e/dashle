@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 
 import "./Input.css";
 
@@ -12,8 +13,10 @@ export function Input({ list }: Props) {
 
     const suggestions = list.filter(level => level.name.toLowerCase().includes(value.trim().toLowerCase()));
 
+    const hiddenSuggestionState = { y: 20, opacity: 0 };
+
     return (
-        <div>
+        <div className="input-wrapper">
             <input
                 value={value}
                 className="input"
@@ -23,19 +26,27 @@ export function Input({ list }: Props) {
                 onChange={(e) => setValue(e.target.value)}
             />
 
-            {showSuggestions && (suggestions.length < list.length) &&
-                <ul className="suggestions">
-                    {suggestions.map(suggestion =>
-                        <li
-                            className="suggestion"
-                            key={suggestion.id}
-                            onMouseDown={() => setValue(suggestion.name)}
-                        >
-                            {suggestion.name}
-                        </li>
-                    )}
-                </ul>
-            }
+            <AnimatePresence>
+                {showSuggestions && (suggestions.length < list.length) &&
+                    <motion.ul
+                        className="suggestions"
+                        initial={hiddenSuggestionState}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={hiddenSuggestionState}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                    >
+                        {suggestions.map(suggestion =>
+                            <li
+                                className="suggestion"
+                                key={suggestion.id}
+                                onMouseDown={() => setValue(suggestion.name)}
+                            >
+                                {suggestion.name}
+                            </li>
+                        )}
+                    </motion.ul>
+                }
+            </AnimatePresence>
         </div>
     );
 }
