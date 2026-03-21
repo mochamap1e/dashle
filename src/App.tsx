@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 import { Input } from "./components/Input";
 import { LevelElement } from "./components/LevelElement";
@@ -25,11 +26,10 @@ export default function App() {
 
             setList(listData.list);
             localStorage.setItem(cacheKey, JSON.stringify(listData));
-
-            console.log("Cached new list");
         } catch(error) {
             setList([]);
-            console.error("Error fetching from Pointercrate:", error);
+            alert("Failed to fetch from Pointercrate");
+            console.error(error);
         }
     }
 
@@ -39,20 +39,24 @@ export default function App() {
         if (cachedList) {
             const parsedCache: ListCache = JSON.parse(cachedList);
 
-            console.log("Cached list found");
-
             if (Date.now() - parsedCache.date >= refreshTime) {
                 fetchList();
-                console.log(`Cached list is older than ${refreshTime} ms`);
             } else {
                 setList(parsedCache.list);
-                console.log("Cached list is up-to-date");
             }
         } else {
             fetchList();
-            console.log("No cached list found!");
         }
     }, []);
+
+    // -------- GAME LOGIC -------- //
+
+    const [guesses, setGuesses] = useState<Level[]>([]);
+
+    function sendGuess(level: Level) {
+        console.log("Guessing:", level.name);
+        setGuesses(prev => [...prev, level]);
+    }
 
     // -------- DEBUGGING -------- //
 
@@ -71,12 +75,25 @@ export default function App() {
     // -------- PAGE -------- //
 
     return <div className="page">
-        <img className="icon" src="/img/gd.png" draggable="false"/>
+        {guesses.length === 0 && (
+            <img className="icon" src="/img/gd.png" draggable="false"/>
+        )}
 
         <h1 className="title">Dashle</h1>
 
-        <Input list={list}/>
+        <Input list={list} sendGuess={sendGuess}/>
 
-        {list.length > 75 && <LevelElement level={list[1]}/>}
+        <div>
+            {guesses.map((level) => <h1 key={level.id}>{level.name}</h1>)}
+        </div>
+
+        {guesses.length >= 6 && (
+            <div>
+                <h1>The level was:</h1>
+                <AnimatePresence>
+                    <LevelElement level={list[1]}/>
+                </AnimatePresence>
+            </div>
+        )}
     </div>;
 }

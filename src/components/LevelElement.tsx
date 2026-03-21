@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { Vibrant } from "node-vibrant/browser";
 
 import "./LevelElement.css";
@@ -12,10 +12,7 @@ export function LevelElement({ level }: { level: Level }) {
 
     const imageTint = "rgba(0, 0, 0, 0.2)";
 
-    const hiddenAnimation = {
-        y: 50,
-        opacity: 0
-    };
+    const hiddenState = { y: 50, opacity: 0 };
 
     useEffect(() => {
         Vibrant.from(level.thumbnail).getPalette().then((palette) => {
@@ -27,43 +24,38 @@ export function LevelElement({ level }: { level: Level }) {
         setBorderStyle(`3px solid ${levelColor}80`);
     }, [levelColor])
     
-    return <AnimatePresence>
-        <motion.div
-            ref={levelRef}
-            key="level"
-            className="level"
-            style={{
-                backgroundImage: `
-                    linear-gradient(${imageTint}),
-                    url(https://levelthumbs.prevter.me/thumbnail/${level.level_id}/small)
-                `,
-                border: borderStyle
-            }}
+    return <motion.div
+        ref={levelRef}
+        key="level"
+        className="level"
+        style={{
+            backgroundImage: `
+                linear-gradient(${imageTint}),
+                url(https://levelthumbs.prevter.me/thumbnail/${level.level_id}/small)
+            `,
+            border: borderStyle
+        }}
 
-            transition={{ duration: 0.3 }}
-            initial={hiddenAnimation}
-            exit={hiddenAnimation}
-            animate={{
-                y: 0,
-                opacity: 1
-            }}
-        >
-            <img
-                className="level-img"
-                draggable="false"
-                src={level.thumbnail}
-                style={{ border: borderStyle }}
-            />
+        transition={{ duration: 0.3 }}
+        initial={hiddenState}
+        exit={hiddenState}
+        animate={{ y: 0, opacity: 1 }}
+    >
+        <img
+            className="level-img"
+            draggable="false"
+            src={level.thumbnail}
+            style={{ border: borderStyle }}
+        />
 
-            <h1
-                className="level-name"
-                style={{ textShadow: `0 0 15px ${levelColor}` }}
-            >{level.name}</h1>
+        <h1
+            className="level-name"
+            style={{ textShadow: `0 0 15px ${levelColor}` }}
+        >{level.name}</h1>
 
-            <p>verified by {level.verifier.name}</p>
-            <p>published by {level.publisher.name}</p>
+        <p>verified by {level.verifier.name}</p>
+        <p>published by {level.publisher.name}</p>
 
-            <p className="level-rank">#{level.position}</p>
-        </motion.div>
-    </AnimatePresence>
+        <p className="level-rank">#{level.position}</p>
+    </motion.div>
 }
