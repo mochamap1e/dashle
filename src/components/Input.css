@@ -1,6 +1,9 @@
 :root {
     --input-width: 400px;
+    --input-background: rgb(40, 40, 40);
+    --input-border: 3px solid rgba(0, 0, 0, 0.25);
     --input-border-radius: 10px;
+    --input-transition: ease-in-out 0.1s;
 }
 
 ::-webkit-scrollbar {
@@ -15,25 +18,31 @@
 
 .input-wrapper {
     display: flex;
+    height: 40px;
+    gap: 10px;
+}
+
+.input-wrapper2 {
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .input {
-    background-color: rgb(40, 40, 40);
+    background-color: var(--input-background);
     color: white;
     width: var(--input-width);
-    height: 40px;
+    height: 100%;
     font-size: 15px;
     text-align: center;
-    border: 2px solid rgb(60, 60, 60);
+    border: var(--input-border);
     border-radius: var(--input-border-radius);
+    transition: var(--input-transition);
     outline: none;
-    transition: ease-in-out 0.1s;
 }
 
 .input:focus {
-    border: 2px solid rgb(100, 100, 100);
+    background-color: rgb(50, 50, 50);
 }
 
 .suggestions {
@@ -47,14 +56,37 @@
 }
 
 .suggestion {
-    background-color: rgb(40, 40, 40);
+    background-color: var(--input-background);
     padding: 10px 0;
     text-align: center;
     list-style-type: none;
     cursor: pointer;
-    transition: background-color ease-in-out 0.1s;
+    transition: var(--input-transition);
 }
 
 .suggestion:hover {
     background-color: rgb(60, 60, 60);
+}
+
+.guess {
+    background-color: rgb(20, 70, 120);
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    aspect-ratio: 1/1;
+    padding: 0;
+    cursor: pointer;
+    transition: var(--input-transition);
+}
+
+.guess:hover {
+    transform: scale(1.05);
+    background-color: rgb(30, 90, 140);
+}
+
+.guess:active {
+    transform: scale(0.95);
+}
+
+.guess > img {
+    height: 60%;
 }

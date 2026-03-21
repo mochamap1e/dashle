@@ -15,8 +15,8 @@ export function Input({ list }: Props) {
 
     const hiddenSuggestionState = { y: 20, opacity: 0 };
 
-    return (
-        <div className="input-wrapper">
+    return <div className="input-wrapper">
+        <div className="input-wrapper2">
             <input
                 value={value}
                 className="input"
@@ -48,5 +48,8 @@ export function Input({ list }: Props) {
                 }
             </AnimatePresence>
         </div>
-    );
+        <button className="guess">
+            <img src="/img/guess.svg" draggable="false"/>
+        </button>
+    </div>
 }
